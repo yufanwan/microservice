@@ -19,5 +19,5 @@ parallel(
 	}
 )
 
-stage 'State 3. development') 
+stage 'State 3. development'
 	node('test_slave') {sh 'echo development'}
