@@ -1,7 +1,7 @@
 stage 'Stage 1. Checkout repo'
 
 node('test_slave') {
-	node('test_slave') {sh 'get from git'}
+	node('test-slave') {sh 'get from git'}
 }
 
 stage 'State 2. test and build'
@@ -9,10 +9,10 @@ stage 'State 2. test and build'
 parallel(
 
 	'unit test' : {
-		node('test_slave') {sh 'echo unit tests'}
+		node('test-slave') {sh 'echo unit tests'}
 	},
 	'pact test' : {
-		node('test_slave') {sh 'echo pact tests'}
+		node('test-slave') {sh 'echo pact tests'}
 	},
 	'build image' : {
 		node('test_slave') {sh 'echo build docker image'}
@@ -20,4 +20,4 @@ parallel(
 )
 
 stage 'State 3. development'
-	node('test_slave') {sh 'echo development'}
+	node('test-slave') {sh 'echo development'}
