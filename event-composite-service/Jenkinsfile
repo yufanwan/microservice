@@ -15,7 +15,7 @@ parallel(
 		node('test-slave') {sh 'echo pact tests'}
 	},
 	'build image' : {
-		node('test_slave') {sh 'echo build docker image'}
+		node('test-slave') {sh 'echo build docker image'}
 	}
 )
 
