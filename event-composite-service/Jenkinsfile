@@ -1,7 +1,7 @@
 stage 'Stage 1. Checkout repo'
 
 node('test-slave') {
-	node('test-slave') {sh 'get from git'}
+	node('test-slave') {sh 'echo get from git'}
 }
 
 stage 'State 2. test and build'
