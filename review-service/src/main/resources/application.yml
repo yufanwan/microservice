@@ -1,0 +1,20 @@
+server:
+  port: 9011
+
+eureka:
+  instance:
+    leaserenewalintervalinseconds: 10
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8010/eureka/ #,http://localhost:8011/eureka/,http://localhost:8012/eureka/
+
+---
+spring:
+  profiles: docker
+eureka:
+  instance:
+    preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: http://eureka-primary:8010/eureka/

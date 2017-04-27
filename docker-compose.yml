@@ -1,0 +1,135 @@
+version: '2.0'
+services:
+
+  mongo:
+    image: mongo
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "15672:15672"
+
+  config-server:
+    build: ./config-server
+    restart: always
+    command: java -jar /app/config-server-latest.jar
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8020:8020"
+    depends_on:
+    - rabbitmq
+
+  eureka-primary:
+    build: ./eureka-server
+    restart: always
+    command: java -jar /app/eureka-server-latest.jar
+    environment:
+      SPRING_PROFILES_ACTIVE: primary
+    ports:
+      - "8010:8010"
+
+  # eureka-secondary:
+  #   build: ./eureka-server
+  #   restart: always
+  #   command: java -jar /app/eureka-server-latest.jar
+  #   environment:
+  #     SPRING_PROFILES_ACTIVE: secondary
+  #   ports:
+  #     - "8011:8011"
+
+  # eureka-tertiary:
+  #   build: ./eureka-server
+  #   restart: always
+  #   command: java -jar /app/eureka-server-latest.jar
+  #   environment:
+  #     SPRING_PROFILES_ACTIVE: tertiary
+  #   ports:
+  #     - "8012:8012"
+
+  event-service-1:
+    build: 
+      context: ./event-service
+      dockerfile: Dockerfile-wait
+    restart: always
+    command: bash -c "wait-for-it config-server:8020 -t 60 && wait-for-it rabbitmq:5672 -t 60 && java -jar /app/event-service-latest.jar"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 9000
+    ports:
+      - "9000:9000"
+    depends_on:
+      - mongo
+      - config-server
+      - rabbitmq
+
+  review-service-1:
+    build: 
+      context: ./review-service
+      dockerfile: Dockerfile-wait
+    restart: always
+    command: java -jar /app/review-service-latest.jar #bash -c "wait-for-it config-server:8020 -t 60 && java -jar /app/review-service-latest.jar"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 9010
+      # EUREKA_INSTANCE_IP-ADDRESS: localhost
+    ports:
+      - "9010:9010"
+    depends_on:
+      - config-server
+
+  recommendation-service:
+    build: 
+      context: ./recommendation-service
+      dockerfile: Dockerfile-wait
+    restart: always
+    command: java -jar /app/recommendation-service-latest.jar #bash -c "wait-for-it config-server:8020 -t 60 && java -jar /app/recommendation-service-latest.jar"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 9020
+    ports:
+      - "9020:9020"
+    depends_on:
+      - config-server
+
+  event-composite-service:
+    build: 
+      context: ./event-composite-service
+      dockerfile: Dockerfile-wait
+    restart: always
+    command: java -jar /app/event-composite-service-latest.jar #bash -c "wait-for-it config-server:8020 -t 60 && java -jar /app/event-composite-service-latest.jar"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 9030
+    ports:
+      - "9030:9030"
+    depends_on:
+      - config-server
+
+  # turbine-server:
+  #   build: 
+  #     context: ./turbine-server
+  #     dockerfile: Dockerfile-wait
+  #   restart: always
+  #   command: bash -c "wait-for-it config-server:8020 -t 60 && java -jar /app/turbine-server-latest.jar"
+  #   environment:
+  #     SPRING_PROFILES_ACTIVE: docker
+  #     SERVER_PORT: 8030
+  #   ports:
+  #     - "8030:8030"
+  #   depends_on:
+  #     - config-server
+
+  # api-gateway:
+  #   build: 
+  #     context: ./api-gateway
+  #     dockerfile: Dockerfile-wait
+  #   restart: always
+  #   command: bash -c "wait-for-it config-server:8020 -t 60 && java -jar /app/api-gateway-latest.jar"
+  #   environment:
+  #     SPRING_PROFILES_ACTIVE: docker
+  #     SERVER_PORT: 8040
+  #   ports:
+  #     - "8040:8040"
+  #   depends_on:
+  #     - config-server

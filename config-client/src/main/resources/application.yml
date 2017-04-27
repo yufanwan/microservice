@@ -1,0 +1,6 @@
+server:
+  port: 8000
+#actuator 接口访问限制取消(/refresh接口需要开放)
+management:
+  security:
+    enabled: false

@@ -1,0 +1,15 @@
+version: '2'
+services:
+  jenkins-slave-01: $jenkins-slave
+    image: jenkins-slave-dind
+    privileged: true
+    environment:
+      JENKINS_MASTER: ${JENKINS_MASTER}
+      NODE_NAME: "${NODE_NAME}-01"
+    external_links:
+      - jenkins-master:jenkins-master
+  jenkins-slave-02:
+    <<: *jenkins-slave
+    environment:
+      JENKINS_MASTER: ${JENKINS_MASTER}
+      NODE_NAME: "${NODE_NAME}-02"

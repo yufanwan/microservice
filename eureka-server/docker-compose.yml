@@ -1,0 +1,26 @@
+version: '2.0'
+services:
+  eureka-primary:
+    build: .
+    restart: always
+    command: java -jar /app/eureka-server-latest.jar
+    environment:
+      SPRING_PROFILES_ACTIVE: primary
+    ports:
+      - "8010:8010"
+  eureka-secondary:
+    build: .
+    restart: always
+    command: java -jar /app/eureka-server-latest.jar
+    environment:
+      SPRING_PROFILES_ACTIVE: secondary
+    ports:
+      - "8011:8011"
+  eureka-tertiary:
+    build: .
+    restart: always
+    command: java -jar /app/eureka-server-latest.jar
+    environment:
+      SPRING_PROFILES_ACTIVE: tertiary
+    ports:
+      - "8012:8012"

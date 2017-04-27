@@ -1,0 +1,68 @@
+{
+    "provider": {
+        "name": "ReviewService"
+    },
+    "consumer": {
+        "name": "EventCompositeService"
+    },
+    "interactions": [
+        {
+            "providerState": "reviews for event are available",
+            "description": "request event reviews",
+            "request": {
+                "method": "GET",
+                "path": "/reviews",
+                "query": "eventId=57c811115d6fe2b86380d537"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/hal+json;charset=UTF-8"
+                },
+                "body": {
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost:9010/reviews?eventId=57c811115d6fe2b86380d537"
+                        }
+                    },
+                    "_embedded": {
+                        "reviews": [
+                            {
+                                "_links": {
+                                    "self": {
+                                        "href": "http://localhost:9010/reviews/57c811115d6fe2b86380d537"
+                                    }
+                                },
+                                "eventId": "57c811115d6fe2b86380d537",
+                                "reviewId": "1",
+                                "author": "author 1",
+                                "subject": "subject 1",
+                                "content": "content 1"
+                            },
+                            {
+                                "_links": {
+                                    "self": {
+                                        "href": "http://localhost:9010/reviews/57c811115d6fe2b86380d537"
+                                    }
+                                },
+                                "eventId": "57c811115d6fe2b86380d537",
+                                "reviewId": "3",
+                                "author": "author 3",
+                                "subject": "subject 3",
+                                "content": "content 3"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "2.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.2.4"
+        }
+    }
+}

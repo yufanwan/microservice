@@ -1,0 +1,17 @@
+versions: '2'
+
+services:
+  jenkins-master:
+    images: jenkins-master
+    container_name: jenkins-master
+    ports:
+      - 10086:8080
+      - 50000:50000
+    volumes:
+      - 'jenkins-master:/var/jenkins_home'
+      - /var/run/docker.sock:/var/run/docker.sock
+    stdin_open: true
+
+volumes:
+  jenkins-master:
+    external: true

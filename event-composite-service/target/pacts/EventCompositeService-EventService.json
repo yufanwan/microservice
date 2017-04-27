@@ -1,0 +1,48 @@
+{
+    "provider": {
+        "name": "EventService"
+    },
+    "consumer": {
+        "name": "EventCompositeService"
+    },
+    "interactions": [
+        {
+            "providerState": "even detail is available",
+            "description": "event detail request",
+            "request": {
+                "method": "GET",
+                "path": "/events/57c811115d6fe2b86380d537"
+            },
+            "response": {
+                "status": 200,
+                "headers": {
+                    "Content-Type": "application/hal+json;charset=UTF-8"
+                },
+                "body": {
+                    "name": "\u4e50\u5b9d\u738b\u56fd\u5c0f\u7cbe\u7075\u751f\u65e5\u4f1a",
+                    "numberLimit": 50,
+                    "mainPhoto": "http://cdn.kidsmeet.cn/Fv-5hE6njXOryyxDl1q1r3cfEf6t",
+                    "introduction": "\u751f\u65e5\u4f1a \u258e\u4eb2\u5b50\u4e92\u52a8 \u258e\u514d\u8d39\u9001\u4e50\u5b9d\u5e01",
+                    "startAt": "2016-08-27T07:00:00.000+0000",
+                    "endAt": "2016-08-27T09:00:00.000+0000",
+                    "_links": {
+                        "self": {
+                            "href": "http://localhost:9000/events/57c811115d6fe2b86380d537"
+                        },
+                        "event": {
+                            "href": "http://localhost:9000/events/57c811115d6fe2b86380d537"
+                        }
+                    }
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "2.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.2.4"
+        }
+    }
+}

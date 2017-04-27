@@ -1,0 +1,12 @@
+FROM centos/java:8
+
+WORKDIR /app
+
+ADD ./build/libs/turbine-server-0.0.1.jar /app
+RUN ln -s turbine-server-0.0.1.jar turbine-server-latest.jar
+
+ADD ./wait-for-it.sh /usr/local/bin/wait-for-it
+RUN chmod +x /usr/local/bin/wait-for-it
+
+
+CMD java -jar /app/turbine-server-latest.jar

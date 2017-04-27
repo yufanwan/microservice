@@ -1,0 +1,12 @@
+FROM centos/java:8
+
+WORKDIR /app
+
+ADD ./build/libs/event-composite-service-0.0.1.jar /app
+RUN ln -s event-composite-service-0.0.1.jar event-composite-service-latest.jar
+
+ADD ./wait-for-it.sh /usr/local/bin/wait-for-it
+RUN chmod +x /usr/local/bin/wait-for-it
+
+
+CMD java -jar /app/event-composite-service-latest.jar
