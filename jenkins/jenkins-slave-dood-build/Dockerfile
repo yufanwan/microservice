@@ -1,10 +1,12 @@
 #WFROM krallin/ubuntu-tini
-FROM aliyun/ubuntu  # contain jdk
+FROM aliyun/ubuntu  
 
 ENV JENKINS_MASTER=${JENKINS_MASTER:-localhost}
 ENV NODE_NAME=${NODE_NAME:-jenkins-slave}
 ENV SECRET=${SECRET}
 
+#Install other things typically needed 
+RUN apt-get update && apt-get -y install curl git subversionopenjdk-7-jre 
 
 #Install kenkins slave agent
 ADD slave.jar /jenkins/
