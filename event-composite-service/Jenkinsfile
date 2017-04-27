@@ -1,6 +1,6 @@
 stage 'Stage 1. Checkout repo'
 
-node('test_slave') {
+node('test-slave') {
 	node('test-slave') {sh 'get from git'}
 }
 
