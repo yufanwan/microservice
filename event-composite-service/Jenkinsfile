@@ -2,7 +2,7 @@ stage 'Stage 1. Checkout repo'
 
 node('test-slave') {
 	//git 'https://github.com/yufanwan/microservice.git'
-	sh 'svn checkout  https://github.com/yufanwan/microservice/trunk/event-composite-service/ .'
+	sh 'svn checkout  https://github.com/yufanwan/microservice/trunk/event-composite-service'
 }
 
 stage 'State 2. test and build'
@@ -10,7 +10,7 @@ stage 'State 2. test and build'
 parallel(
 
 	'unit test' : {
-		node('test-slave') {sh 'echo unit tests'}
+		node('test-slave') {sh './event-composite-service/auto/unit_test.sh'}
 	},
 	'pact test' : {
 		node('test-slave') {sh 'echo pact tests'}
