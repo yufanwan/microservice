@@ -2,7 +2,7 @@ stage 'Stage 1. Checkout repo'
 
 node('test-slave') {
 	//git 'https://github.com/yufanwan/microservice.git'
-	svn checkout 'https://github.com/yufanwan/microservice/trunk/event-composite-service'
+	svn 'https://github.com/yufanwan/microservice/trunk/event-composite-service'
 }
 
 stage 'State 2. test and build'
