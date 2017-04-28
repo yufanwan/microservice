@@ -1,0 +1,22 @@
+version: '2'  # DOCKER_PATH=$(which docker) docker-compose -f slave-compose.yml up --build
+services:
+  jenkins-slave-01: 
+    container_name: jenkins-slave-01
+    image: jenkins-slave
+    environment:
+      JENKINS_MASTER: 192.168.1.39:10086 
+      NODE_NAME:  jenkins-slave-01 
+      SECRET: 47e9eba0ab507eb78ceaa1f3845c9317a3823a6fe3a33dce7a11c06ccabf6793
+    volumes:
+      # - ${DOCKER_PATH}:/usr/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock
+  jenkins-slave-02:
+    container_name: jenkins-slave-02
+    image: jenkins-slave
+    environment:
+      JENKINS_MASTER: 192.168.1.39:10086 
+      NODE_NAME:  jenkins-slave-02
+      SECRET: 3f79db355807fdf09c7333e9a04afa08328a0ce1ace302fa65184129b0a3d3ea
+    volumes:
+      # - ${DOCKER_PATH}:/usr/bin/docker
+      - /var/run/docker.sock:/var/run/docker.sock    

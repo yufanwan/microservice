@@ -1,4 +1,4 @@
-#/bin/bash -e
+#!/bin/bash -e
 
 # Run a docker instance in the background if the DIND env is set
 if [[ -n "$DIND" && "$DIND" != 'false' ]]; then
