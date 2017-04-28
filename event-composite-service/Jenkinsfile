@@ -12,7 +12,8 @@ parallel(
 	'unit test' : {
 		node('test-slave') {
 			sh 'chmod +x ./event-composite-service/auto/unit_test.sh'
-			//sh './event-composite-service/auto/unit_test.sh'}
+			//sh './event-composite-service/auto/unit_test.sh'
+		}
 	},
 	'pact test' : {
 		node('test-slave') {sh 'echo pact tests'}
