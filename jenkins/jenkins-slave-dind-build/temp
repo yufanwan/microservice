@@ -30,7 +30,7 @@ RUN pip install docker-compose
 #ADD entrypoint.sh /usr/local/bin/entrypoint.sh
 #RUN chmod +x /usr/local/bin/entrypoint.sh
 #ENTRYPOINT ["tini","-s","--","/usr/local/bin/entrypoint.sh"]
-#ENV DIND false
+#ENV DIND true
 
 ADD slave.jar /jenkins/
 ADD jenkins-slave.sh /usr/local/bin/jenkins-slave.sh

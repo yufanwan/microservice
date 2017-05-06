@@ -1,5 +1,5 @@
-#WFROM krallin/ubuntu-tini
-FROM aliyun/ubuntu  
+#docker build -t jenkins-slave-dood:latest .
+FROM denverdino/ubuntu-aliyun   
 
 ENV JENKINS_MASTER=${JENKINS_MASTER:-localhost}
 ENV NODE_NAME=${NODE_NAME:-jenkins-slave}

@@ -1,3 +1,3 @@
 #!/bin/bash
-echo `hostname`/event-composite-service/
-docker run -d --rm -v `hostname`:`pwd`/event-composite-service/:/app gradle/java gradlew clean test
+docker run -dit -w /mnt -v /opt/jenkins_slave_home/workspace/composite-service/event-composite-service:/mnt:rw gradle/java
+#docker run -dit -w /mnt -v /opt/jenkins_slave_home/workspace/composite-service/event-composite-service:/mnt:rw gradle/java gradle clean test

@@ -8,8 +8,6 @@ buildscript {
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-//		classpath 'au.com.dius:pact-jvm-provider-gradle_2.11:3.2.4'
-//		classpath 'com.wiredforcode:gradle-spawn-plugin:0.6.0'
 	}
 }
 
@@ -17,8 +15,6 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.springframework.boot'
-//apply plugin: 'au.com.dius.pact'
-//apply plugin: 'com.wiredforcode.spawn'
 
 
 jar{
@@ -64,40 +60,3 @@ dependencyManagement {
 	}
 }
 
-
-// 消费者驱动的契约测试，提供者（provider）
-
-
-//pact {
-//	serviceProviders {
-//		eventProvider {
-//			startProviderTask = 'startProvider'
-//			terminateProviderTask = 'stopProvider'
-//			hasPactWith('EventCompositeService') {
-//				pactFile = file('target/pacts/EventCompositeService-EventService.json')
-//			}
-//		}
-//	}
-//}
-//
-//import com.wiredforcode.gradle.spawn.*
-//
-//
-//task startServer(type: SpawnProcessTask) {
-//	command "docker-compose up --build"
-//	ready 'Started Application'
-//}
-//
-//task startProvider(type: Exec, dependsOn: 'startServer') {
-//	// commandLine "./db-seed/seed.sh"
-//}
-//
-//task killBackgroundProcess(type: KillProcessTask)
-//
-//task stopProvider(type: Exec, dependsOn: 'killBackgroundProcess') {
-//	// commandLine './scripts/stop.sh'
-//}
-//
-//task copy(){
-//
-//}
