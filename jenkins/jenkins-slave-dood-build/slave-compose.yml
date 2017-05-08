@@ -1,4 +1,4 @@
-version: '2'  # DOCKER_PATH=$(which docker) docker-compose -f slave-compose.yml up --build   \   docker-compose -f slave-compose.yml up --build
+version: '2'  # DOCKER_PATH=$(which docker) docker-compose -f slave-compose.yml up --build  -----------> for dood
 services:
   jenkins-slave-01: 
     container_name: jenkins-slave-dood-01
@@ -9,7 +9,7 @@ services:
       SECRET: 47e9eba0ab507eb78ceaa1f3845c9317a3823a6fe3a33dce7a11c06ccabf6793
     volumes:
       - ${DOCKER_PATH}:/usr/bin/docker
-      - /opt/jenkins_slave_home/workspace:/jenkins/workspace # host need create '/opt/jenkins_slave_home/workspace' directory
+      - /opt/jenkins_slave_home/workspace:/jenkins/workspace 
       - /var/run/docker.sock:/var/run/docker.sock
   jenkins-slave-02:
     container_name: jenkins-slave-dood-02
