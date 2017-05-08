@@ -11,4 +11,4 @@ docker build -t jenkins-slave-dind:latest .
 ## Use docker compose build jenkins slaves
 ```bash
 docker-compose --privileged -f slave-compose.yml up --build
-```it 
+```
