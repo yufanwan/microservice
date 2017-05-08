@@ -2,7 +2,7 @@
 
 This recipe lets you build jenkins slave with docker in docker(dind).
 
-Reference resources https://github.com/yufanwan/dind
+Reference resources https://github.com/jpetazzo/dind
 
 ## Build jenkins-slave-dind image
 
