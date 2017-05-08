@@ -1,6 +1,7 @@
 # Jenkins slave build with dood
 
 This recipe lets you build jenkins slave with docker outside of docker(dood).
+I recommend this way more than dind.
 
 Tips: not support on windows.
 
