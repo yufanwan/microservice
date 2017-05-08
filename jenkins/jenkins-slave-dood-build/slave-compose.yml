@@ -1,4 +1,4 @@
-version: '2'  # DOCKER_PATH=$(which docker) docker-compose -f slave-compose.yml up --build  -----------> for dood
+version: '2' 
 services:
   jenkins-slave-01: 
     container_name: jenkins-slave-dood-01
