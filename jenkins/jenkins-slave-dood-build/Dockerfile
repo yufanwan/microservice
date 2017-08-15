@@ -1,12 +1,14 @@
 #Build base jenkins slave image command:  docker build -t jenkins-slave-dood:latest .
-FROM denverdino/ubuntu-aliyun   
-
+FROM centos:7
 ENV JENKINS_MASTER=${JENKINS_MASTER:-localhost}
 ENV NODE_NAME=${NODE_NAME:-jenkins-slave}
 ENV SECRET=${SECRET}
 
-#Install other things typically needed 
-RUN apt-get update && apt-get -y install curl git subversion openjdk-7-jre 
+#Install other things typically needed
+RUN yum update -y && yum -y install curl git subversion  java-1.8.0-openjdk.x86_64 \
+        && yum -y clean all \
+        && yum -y autoremove \
+        && rm -rf /var/cache/yum/*
 
 #Install kenkins slave agent
 ADD slave.jar /jenkins/
